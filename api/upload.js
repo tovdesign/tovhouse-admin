@@ -21,7 +21,7 @@ function verifyToken(req) {
 function getS3() {
   return new S3Client({
     region: "auto",
-    endpoint: process.env.R2_ENDPOINT,
+    endpoint: process.env.R2_S3_API,
     credentials: {
       accessKeyId: process.env.R2_ACCESS_KEY_ID,
       secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
@@ -48,7 +48,7 @@ module.exports = async (req, res) => {
 
       await getS3().send(
         new PutObjectCommand({
-          Bucket: process.env.R2_BUCKET_NAME,
+          Bucket: process.env.R2_BUCKET,
           Key: key,
           Body: buffer,
           ContentType: contentType || "image/webp",
@@ -71,7 +71,7 @@ module.exports = async (req, res) => {
 
       await getS3().send(
         new DeleteObjectCommand({
-          Bucket: process.env.R2_BUCKET_NAME,
+          Bucket: process.env.R2_BUCKET,
           Key: key,
         }),
       );

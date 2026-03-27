@@ -15,7 +15,7 @@ function verifyToken(req) {
 }
 
 const BASE_ID = process.env.AIRTABLE_BASE_ID;
-const API_KEY = process.env.AIRTABLE_API_KEY;
+const API_KEY = process.env.AIRTABLE_TOKEN;
 const TABLE = "portfolio";
 const BASE_URL = `https://api.airtable.com/v0/${BASE_ID}/${TABLE}`;
 const R2_PUBLIC =
@@ -46,7 +46,7 @@ function setCors(req, res) {
 function getS3() {
   return new S3Client({
     region: "auto",
-    endpoint: process.env.R2_ENDPOINT,
+    endpoint: process.env.R2_S3_API,
     credentials: {
       accessKeyId: process.env.R2_ACCESS_KEY_ID,
       secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
@@ -59,7 +59,7 @@ async function uploadBase64ToR2(base64, key) {
   const buffer = Buffer.from(data, "base64");
   await getS3().send(
     new PutObjectCommand({
-      Bucket: process.env.R2_BUCKET_NAME,
+      Bucket: process.env.R2_BUCKET,
       Key: key,
       Body: buffer,
       ContentType: "image/webp",

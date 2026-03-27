@@ -1,5 +1,5 @@
 const BASE_ID = process.env.AIRTABLE_BASE_ID;
-const API_KEY = process.env.AIRTABLE_API_KEY;
+const API_KEY = process.env.AIRTABLE_TOKEN;
 
 function verifyToken(req) {
   const auth = req.headers.authorization;

@@ -4,7 +4,7 @@ const crypto = require("crypto");
 
 const s3 = new S3Client({
   region: "auto",
-  endpoint: process.env.R2_ENDPOINT,
+  endpoint: process.env.R2_S3_API,
   credentials: {
     accessKeyId: process.env.R2_ACCESS_KEY_ID,
     secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
@@ -16,7 +16,7 @@ async function uploadPhoto(dataUrl, key) {
   const buffer = Buffer.from(base64, "base64");
   await s3.send(
     new PutObjectCommand({
-      Bucket: process.env.R2_BUCKET_NAME,
+      Bucket: process.env.R2_BUCKET,
       Key: key,
       Body: buffer,
       ContentType: "image/webp",
@@ -29,7 +29,7 @@ async function uploadPhoto(dataUrl, key) {
 const AT_BASE = () =>
   `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/${process.env.AIRTABLE_TABLE_ID}`;
 const AT_HEADERS = () => ({
-  Authorization: `Bearer ${process.env.AIRTABLE_API_KEY || process.env.AIRTABLE_TOKEN}`,
+  Authorization: `Bearer ${process.env.AIRTABLE_TOKEN}`,
   "Content-Type": "application/json",
 });
 

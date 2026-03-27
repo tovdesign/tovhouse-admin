@@ -8,7 +8,7 @@ async function saveToAirtable(data) {
   const res = await fetch(AIRTABLE_URL(), {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${process.env.AIRTABLE_API_KEY}`,
+      Authorization: `Bearer ${process.env.AIRTABLE_TOKEN}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({

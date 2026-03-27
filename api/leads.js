@@ -1,7 +1,7 @@
 const BASE_URL = () =>
   `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/${process.env.AIRTABLE_TABLE_ID}`;
 const headers = () => ({
-  Authorization: `Bearer ${process.env.AIRTABLE_API_KEY}`,
+  Authorization: `Bearer ${process.env.AIRTABLE_TOKEN}`,
   "Content-Type": "application/json",
 });
 
