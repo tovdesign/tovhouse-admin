@@ -1,0 +1,41 @@
+# 환경변수
+.env
+.env.*
+.env.local
+.env.production
+.env.development
+
+# Dependencies
+node_modules/
+
+# Build
+.next/
+out/
+dist/
+build/
+
+# Vercel
+.vercel/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# GCP Key
+*.json
+!package.json
+!package-lock.json
+!tsconfig.json
+!tsconfig.*.json
+!*.config.json
